@@ -1,0 +1,16 @@
+platform :ios, '9.0'
+use_frameworks!
+
+target 'FactsApp' do
+
+  # Pods for FactsApp
+  pod 'Alamofire', '~> 4.7'
+  pod 'SwiftyJSON', '~> 4.0'
+  pod 'SnapKit', '~> 4.0.0'
+
+  target 'FactsAppTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
