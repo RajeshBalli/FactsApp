@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2890862120DB9938000D86B7 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2890862020DB9938000D86B7 /* ServiceManager.swift */; };
+		2890862320DBF22C000D86B7 /* FactsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2890862220DBF22C000D86B7 /* FactsListViewCell.swift */; };
 		28BF499220DB69DC008C5E49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BF499120DB69DC008C5E49 /* AppDelegate.swift */; };
 		28BF499420DB69DC008C5E49 /* FactsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BF499320DB69DC008C5E49 /* FactsListViewController.swift */; };
 		28BF499920DB69DD008C5E49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28BF499820DB69DD008C5E49 /* Assets.xcassets */; };
@@ -26,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2890862020DB9938000D86B7 /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
+		2890862220DBF22C000D86B7 /* FactsListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsListViewCell.swift; sourceTree = "<group>"; };
 		28BF498E20DB69DC008C5E49 /* FactsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FactsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28BF499120DB69DC008C5E49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28BF499320DB69DC008C5E49 /* FactsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsListViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 				28BF499320DB69DC008C5E49 /* FactsListViewController.swift */,
 				28BF499820DB69DD008C5E49 /* Assets.xcassets */,
 				28BF499D20DB69DD008C5E49 /* Info.plist */,
+				2890862020DB9938000D86B7 /* ServiceManager.swift */,
+				2890862220DBF22C000D86B7 /* FactsListViewCell.swift */,
 			);
 			path = FactsApp;
 			sourceTree = "<group>";
@@ -287,6 +293,8 @@
 			files = (
 				28BF499420DB69DC008C5E49 /* FactsListViewController.swift in Sources */,
 				28BF499220DB69DC008C5E49 /* AppDelegate.swift in Sources */,
+				2890862320DBF22C000D86B7 /* FactsListViewCell.swift in Sources */,
+				2890862120DB9938000D86B7 /* ServiceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
