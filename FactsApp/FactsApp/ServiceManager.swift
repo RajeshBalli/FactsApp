@@ -44,6 +44,7 @@ class ServiceManager {
             .response { [weak self] response in
                 guard let factsJsonRawData = response.data else {
                     print("Could not get data from URL.")
+                    completionHandler()
                     return
                 }
 
@@ -77,6 +78,28 @@ class ServiceManager {
                         print("SwiftyJSON Data error: \(error)")
                     }
                 }
+
+                completionHandler()
+        }
+    }
+
+    func fetchFactsImage(factsRowData: FactsRowData, completionHandler: @escaping () -> Void) {
+
+        guard let imageURL = factsRowData.imageURL else {
+            print("Image URL doesn't exist.")
+            completionHandler()
+            return
+        }
+
+        Alamofire.request(imageURL)
+            .response { response in
+                guard let imageData = response.data else {
+                    print("Could not get image from image URL.")
+                    completionHandler()
+                    return
+                }
+
+                factsRowData.image = UIImage(data: imageData)
 
                 completionHandler()
         }

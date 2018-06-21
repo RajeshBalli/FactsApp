@@ -13,12 +13,14 @@ class FactsListViewController: UITableViewController {
     // MARK: Properties
     private let serviceManager = ServiceManager()
     private let factsTableViewCellUniqueID = "factsTableViewCell"
+    var imageCache: [String: FactsRowData] = [:]
 
     
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.showsHorizontalScrollIndicator = true
         tableView.register(FactsListViewCell.self, forCellReuseIdentifier: factsTableViewCellUniqueID)
 
         serviceManager.fetchFacts() { [weak self] in
@@ -41,11 +43,34 @@ class FactsListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: factsTableViewCellUniqueID, for: indexPath) as! FactsListViewCell
 
+        cell.selectionStyle = .none
+
         let factsData = serviceManager.factsRowData[indexPath.row]
 
         cell.titleLabel.text = factsData.title
         cell.descriptionLabel.text = factsData.description
-        cell.selectionStyle = .none
+
+        cell.factsImageView.image = nil
+
+        if let imageURL_ = factsData.imageURL {
+
+            if let cachedFactsData = imageCache[imageURL_] {
+
+                cell.factsImageView.image = cachedFactsData.image
+            } else {
+
+                serviceManager.fetchFactsImage(factsRowData: factsData) { [weak self] in
+
+                    self?.imageCache[imageURL_] = factsData
+
+                    if let updateCell = self?.tableView?.cellForRow(at: indexPath) as? FactsListViewCell, updateCell.factsImageView.image == nil {
+
+                        updateCell.factsImageView.image = factsData.image
+                        updateCell.setNeedsLayout()
+                    }
+                }
+            }
+        }
 
         return cell
     }

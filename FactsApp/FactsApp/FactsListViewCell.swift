@@ -59,7 +59,6 @@ class FactsListViewCell: UITableViewCell {
         factsImageView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(descriptionLabel.snp.bottom).offset(1)
             make.left.equalTo(self).offset(20)
-            make.right.equalTo(self).offset(-20)
             make.bottom.equalTo(self).offset(-10)
         }
     }
