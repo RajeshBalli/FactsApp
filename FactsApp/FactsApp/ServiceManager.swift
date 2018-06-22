@@ -48,13 +48,15 @@ class ServiceManager {
                     return
                 }
 
+                // Downlaoded data contains special characters so convert the data into string
                 let factsJsonStr = NSString(data: factsJsonRawData, encoding: String.Encoding.isoLatin1.rawValue)
 
+                // Convert the string into UTF8 encoded data
                 if let factsJsonData = factsJsonStr?.data(using: String.Encoding.utf8.rawValue) {
 
                     do {
 
-                        let factsJson = try JSON(data: factsJsonData)
+                        let factsJson = try JSON(data: factsJsonData)  // SwiftyJSON parsing
 
                         self?.factsTitle = factsJson["title"].stringValue
 
@@ -62,6 +64,7 @@ class ServiceManager {
 
                         for index in 0..<count
                         {
+                            // if title and description and imageHref are not available then do not process that row
                             if factsJson["rows"][index]["title"] != JSON.null
                                 || factsJson["rows"][index]["description"] != JSON.null
                                 || factsJson["rows"][index]["imageHref"] != JSON.null
@@ -103,5 +106,11 @@ class ServiceManager {
 
                 completionHandler()
         }
+    }
+
+    func resetFactsData() {
+
+        factsTitle = ""
+        factsRowData = [FactsRowData]()
     }
 }
