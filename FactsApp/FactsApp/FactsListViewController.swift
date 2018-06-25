@@ -69,6 +69,14 @@ class FactsListViewController: UITableViewController {
         fetchFactsData(endRefreshing: true)
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+
+      super.viewWillTransition(to: size, with: coordinator)
+
+      // reload during orientation change as images are not refreshing
+      self.tableView.reloadData()
+    }
+
     // MARK: TableView
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 

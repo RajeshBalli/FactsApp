@@ -58,22 +58,49 @@ class FactsListViewCell: UITableViewCell {
         addSubview(factsImageView)
 
         titleLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(FactsListViewCellConstants.constraintTitleLabelTopOffset)
-            make.left.equalTo(self).offset(FactsListViewCellConstants.constraintLeftOffset)
-            make.right.equalTo(self).offset(FactsListViewCellConstants.constraintRightOffset)
+            if #available(iOS 11.0, *) {
+              make.top.equalTo(self.safeAreaLayoutGuide.snp.topMargin)
+                  .offset(FactsListViewCellConstants.constraintTitleLabelTopOffset)
+              make.left.equalTo(self.safeAreaLayoutGuide.snp.leftMargin)
+                  .offset(FactsListViewCellConstants.constraintLeftOffset)
+              make.right.equalTo(self.safeAreaLayoutGuide.snp.rightMargin)
+                  .offset(FactsListViewCellConstants.constraintRightOffset)
+            } else {
+              make.top.equalTo(self).offset(FactsListViewCellConstants.constraintTitleLabelTopOffset)
+              make.left.equalTo(self).offset(FactsListViewCellConstants.constraintLeftOffset)
+              make.right.equalTo(self).offset(FactsListViewCellConstants.constraintRightOffset)
+            }
         }
 
         descriptionLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(titleLabel.snp.bottom).offset(1)
-            make.left.equalTo(self).offset(FactsListViewCellConstants.constraintLeftOffset)
-            make.right.equalTo(self).offset(FactsListViewCellConstants.constraintRightOffset)
+
+            if #available(iOS 11.0, *) {
+                make.left.equalTo(self.safeAreaLayoutGuide.snp.leftMargin)
+                    .offset(FactsListViewCellConstants.constraintLeftOffset)
+                make.right.equalTo(self.safeAreaLayoutGuide.snp.rightMargin)
+                    .offset(FactsListViewCellConstants.constraintRightOffset)
+            } else {
+                make.left.equalTo(self).offset(FactsListViewCellConstants.constraintLeftOffset)
+                make.right.equalTo(self).offset(FactsListViewCellConstants.constraintRightOffset)
+            }
         }
 
         factsImageView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(descriptionLabel.snp.bottom).offset(1)
-            make.left.equalTo(self).offset(FactsListViewCellConstants.constraintLeftOffset)
-            make.bottom.equalTo(self).offset(FactsListViewCellConstants.constraintFactsImageViewBottomOffset)
-            imageViewWidthConstraints = make.width.equalTo(0).constraint  // set the width as default 0 to resize it dynamically
+
+            if #available(iOS 11.0, *) {
+              make.left.equalTo(self.safeAreaLayoutGuide.snp.leftMargin)
+                  .offset(FactsListViewCellConstants.constraintLeftOffset)
+              make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottomMargin)
+                  .offset(FactsListViewCellConstants.constraintFactsImageViewBottomOffset)
+            } else {
+              make.left.equalTo(self).offset(FactsListViewCellConstants.constraintLeftOffset)
+              make.bottom.equalTo(self).offset(FactsListViewCellConstants.constraintFactsImageViewBottomOffset)
+            }
+
+            // set the width as default 0 to resize it dynamically
+            imageViewWidthConstraints = make.width.equalTo(0).constraint
         }
     }
 
